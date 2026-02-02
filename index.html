@@ -14,10 +14,27 @@
             <h1>Todo List</h1>
         </div>
         <div class="content">
+
             <div class="add-todo">
-                <input type="" text" placeholder="" Add a todo" id="add-todo-input">
+                <label for="add-title-input">Title</label>
+                <input type="text" placeholder="Add a title" id="add-title-input">
+
+                <label for="add-desc-input">Description</label>
+                <input type="text" placeholder="Add a description" id="add-desc-input">
+
+                <label for="add-date-input">Due Date</label>
+                <input type="date" placeholder="Add a due date" id="add-date-input">
+
+                <label for="add-priority-input">Priority</label>
+                <select id="add-priority-input">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+
                 <button id="add-todo-btn">Add Todo</button>
             </div>
+
         </div>
         <div id="todo-list"></div>
     </div>

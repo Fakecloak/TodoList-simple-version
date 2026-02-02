@@ -1,4 +1,8 @@
-const Input = document.getElementById("add-todo-input");
+const titleInput = document.getElementById("add-title-input");
+const descriptionInput = document.getElementById("add-desc-input");
+const dueDateInput = document.getElementById("add-date-input");
+const priorityInput = document.getElementById("add-priority-input");
+
 const Button = document.getElementById("add-todo-btn");
 const todoList = document.getElementById("todo-list");
 
@@ -11,10 +15,10 @@ window.onload = () => {
 
 
 Button.addEventListener("click", () => {
-    todos.push(Input.value);
+    todos.push(titleInput.value);
     localStorage.setItem("todos", JSON.stringify(todos));
-    addTodo(Input.value);
-    Input.value = " ";
+    addTodo(titleInput.value);
+    titleInput.value = " ";
 })
 
 function addTodo(todo) {
