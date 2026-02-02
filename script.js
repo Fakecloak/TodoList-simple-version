@@ -8,23 +8,39 @@ const todoList = document.getElementById("todo-list");
 
 let todos = [];
 
-window.onload = () => {
-    todos = JSON.parse(localStorage.getItem("todos")) || [];
-    todos.forEach(todo => addTodo(todo));
-}
-
+window.addEventListener("DOMContentLoaded", loadLocalStorage);
 
 Button.addEventListener("click", () => {
-    todos.push(titleInput.value);
-    localStorage.setItem("todos", JSON.stringify(todos));
-    addTodo(titleInput.value);
-    titleInput.value = " ";
+    if (!titleInput.value.trim() || !descriptionInput.value.trim() || !dueDateInput.value.trim() || !priorityInput.value.trim()) {
+        alert("Please fill all the fields");
+        return;
+    }
+
+    const todo = {
+        title: titleInput.value,
+        description: descriptionInput.value,
+        dueDate: dueDateInput.value,
+        priority: priorityInput.value,
+    }
+    addTodo(todo);
+    renderTodo(todo);
+    resetInputs();
 })
 
+function loadLocalStorage() {
+    todos = JSON.parse(localStorage.getItem("todos")) || [];
+    todos.forEach(todo => renderTodo(todo));
+}
+
 function addTodo(todo) {
+    todos.push(todo);
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function renderTodo(todo) {
     const para = document.createElement("p");
     para.classList.add("todo-item");
-    para.textContent = todo;
+    para.textContent = `${todo.title} - ${todo.description} - ${todo.dueDate} - ${todo.priority}`;
     todoList.appendChild(para);
 
     para.addEventListener("click", () => {
@@ -45,3 +61,11 @@ function removeTodo(todo) {
     localStorage.setItem("todos", JSON.stringify(todos));
 }
 
+function resetInputs() {
+    titleInput.value = "";
+    descriptionInput.value = "";
+    dueDateInput.value = "";
+    priorityInput.value = "low";
+}
+
+// function rendertodo(todo)
