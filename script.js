@@ -67,5 +67,3 @@ function resetInputs() {
     dueDateInput.value = "";
     priorityInput.value = "low";
 }
-
-// function rendertodo(todo)
